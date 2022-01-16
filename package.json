@@ -47,6 +47,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
+  "homepage": "http:swlee93.github.io/letswine",
   "resolutions": {
     "mini-css-extract-plugin": "2.4.5"
   },
