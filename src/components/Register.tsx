@@ -1,91 +1,66 @@
-import React, { ChangeEvent, FC, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { ChangeEvent, FC, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  Button,
-  Grid,
-  MenuItem,
-  GridList,
-  GridListTile,
-  Select,
-} from "@material-ui/core";
-import {
-  AddCircleOutline,
-  AttachFile,
-  GetApp,
-  Remove,
-} from "@material-ui/icons";
+import { Button, Grid, MenuItem, GridList, GridListTile, Select } from '@material-ui/core';
+import { AddCircleOutline, AttachFile, GetApp, Remove } from '@material-ui/icons';
 
-import { AVAILABLE_MENU_LIST } from "../types";
+import { AVAILABLE_MENU_LIST } from '../types';
 
-import Spacer from "./Spacer";
-import DraggableOrderList from "./DraggableOrderList";
+import Spacer from './Spacer';
+import DraggableOrderList from './DraggableOrderList';
 
-import { RootState } from "src/features";
-import Form from "src/features/form";
-import {
-  addComponent,
-  addFiles,
-  addThumbnail,
-} from "src/features/app/appSlice";
-import { insertResultToTemplate, mapMenuValueToMenuLabel } from "src/utils";
-import { makeStyles } from "@material-ui/core/styles";
+import { RootState } from 'src/features';
+import Form from 'src/features/form';
+import { addComponent, addFiles, addThumbnail } from 'src/features/app/appSlice';
+import { insertResultToTemplate, mapMenuValueToMenuLabel } from 'src/utils';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginBottom: "24px",
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
+    marginBottom: '24px',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
   },
   tool: {
-    display: "flex",
+    display: 'flex',
   },
   button: {
-    width: "144px",
+    width: '144px',
   },
   gridList: {
     width: 256,
-    height: "100%",
-    transform: "translateZ(0)",
+    height: '100%',
+    transform: 'translateZ(0)',
   },
   titleBar: {
-    background:
-      "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, " +
-      "rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+    background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
   icon: {
-    color: "white",
+    color: 'white',
   },
 }));
 
 const Register: FC = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { components, files, mainImageUrl, thumbnailList } = useSelector(
-    (state: RootState) => ({
-      components: state.appSlice.components,
-      thumbnailList: state.appSlice.thumbnailList,
-      files: state.appSlice.files,
-      mainImageUrl: state.mainSlice.main_image_url,
-    })
-  );
+  const { components, files, mainImageUrl, thumbnailList } = useSelector((state: RootState) => ({
+    components: state.appSlice.components,
+    thumbnailList: state.appSlice.thumbnailList,
+    files: state.appSlice.files,
+    mainImageUrl: state.mainSlice.main_image_url,
+  }));
 
-  const [type, setType] = useState<AVAILABLE_MENU_LIST | null>(
-    AVAILABLE_MENU_LIST.MAIN
-  );
-  const [selectedType, setSelectedType] = useState<AVAILABLE_MENU_LIST | null>(
-    null
-  );
+  const [type, setType] = useState<AVAILABLE_MENU_LIST | null>(AVAILABLE_MENU_LIST.MAIN);
+  const [selectedType, setSelectedType] = useState<AVAILABLE_MENU_LIST | null>(null);
 
   const handleSelect = (t: AVAILABLE_MENU_LIST) => {
     setSelectedType(t);
   };
 
-  const handleChange = ({
-    target: { value },
-  }: ChangeEvent<{ value: unknown }>) => setType(value as AVAILABLE_MENU_LIST);
+  const handleChange = ({ target: { value } }: ChangeEvent<{ value: unknown }>) =>
+    setType(value as AVAILABLE_MENU_LIST);
 
   const handleClick = (t: AVAILABLE_MENU_LIST | null) => {
     if (t) {
@@ -95,11 +70,11 @@ const Register: FC = () => {
   };
 
   const download = (stringifyHtml: string) => {
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     document.body.appendChild(a);
-    a.style.display = "none";
+    a.style.display = 'none';
 
-    const blob = new Blob([stringifyHtml], { type: "octet/stream" });
+    const blob = new Blob([stringifyHtml], { type: 'octet/stream' });
     const url = window.URL.createObjectURL(blob);
 
     a.href = url;
@@ -111,40 +86,39 @@ const Register: FC = () => {
   const downloadFiles = () => files.forEach((file) => file && download(file));
 
   const addHtmlFiles = async () => {
-    const result = document.getElementById("result");
+    const result = document.getElementById('result');
 
-    result?.outerHTML &&
-      (await dispatch(addFiles(insertResultToTemplate(result.outerHTML))));
+    result?.outerHTML && (await dispatch(addFiles(insertResultToTemplate(result.outerHTML))));
     await dispatch(addThumbnail(mainImageUrl));
   };
 
   const remove = () => {
     try {
-      localStorage.removeItem("persist:lets-wine");
+      localStorage.removeItem('persist:lets-wine');
       setTimeout(() => window.location.reload(), 300);
     } catch (e) {}
   };
 
   return (
-    <Grid container alignItems="center" style={{ width: "100%" }}>
+    <Grid container alignItems='center' style={{ width: '100%' }}>
       <Grid item xs={12}>
         <Button
           className={classes.button}
           startIcon={<Remove />}
-          variant="contained"
-          color="secondary"
+          variant='contained'
+          color='secondary'
           onClick={remove}
         >
           모두 삭제
         </Button>
-        <Spacer axis="vertical" size={24} />
+        <Spacer axis='vertical' size={24} />
       </Grid>
       {!!thumbnailList?.length && (
         <Grid item xs={12} className={classes.root}>
           <GridList cellHeight={200} spacing={1} className={classes.gridList}>
             {thumbnailList.map((thumbnail) => (
               <GridListTile key={thumbnail}>
-                <img className="h-full object-cover" src={thumbnail} alt="" />
+                <img className='h-full object-cover' src={thumbnail} alt='' />
               </GridListTile>
             ))}
           </GridList>
@@ -152,11 +126,11 @@ const Register: FC = () => {
       )}
       <Grid item xs={12} className={classes.tool}>
         <Select
-          labelId="component-select-label"
-          id="component-select"
+          labelId='component-select-label'
+          id='component-select'
           value={type}
           onChange={handleChange}
-          style={{ minWidth: "144px" }}
+          style={{ minWidth: '144px' }}
         >
           {Object.values(AVAILABLE_MENU_LIST)
             .filter((menu) => !components.includes(menu))
@@ -166,46 +140,46 @@ const Register: FC = () => {
               </MenuItem>
             ))}
         </Select>
-        <Spacer axis="horizontal" size={12} />
+        <Spacer axis='horizontal' size={12} />
         <Button
           className={classes.button}
           startIcon={<AddCircleOutline />}
-          variant="contained"
+          variant='contained'
           disabled={!type}
-          color="default"
+          color='default'
           onClick={() => handleClick(type)}
         >
           컴포넌트 추가
         </Button>
-        <Spacer axis="horizontal" size={12} />
+        <Spacer axis='horizontal' size={12} />
         <Button
           className={classes.button}
           startIcon={<AttachFile />}
-          variant="contained"
-          color="default"
+          variant='contained'
+          color='default'
           disabled={!components?.length}
           onClick={addHtmlFiles}
         >
           파일 추가
         </Button>
-        <Spacer axis="horizontal" size={12} />
+        <Spacer axis='horizontal' size={12} />
         <Button
           className={classes.button}
           startIcon={<GetApp />}
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
           disabled={!files?.length}
           onClick={downloadFiles}
         >
           다운로드
         </Button>
       </Grid>
-      <Spacer axis="vertical" size={24} />
+      <Spacer axis='vertical' size={24} />
       {components.length > 0 && (
         <>
           <DraggableOrderList items={components} onSelect={handleSelect} />
           {components?.find((component) => component === selectedType) && (
-            <Grid item xs={12} style={{ marginTop: "24px" }}>
+            <Grid item xs={12} style={{ marginTop: '24px' }}>
               <Grid container>
                 <Grid item xs={12}>
                   <Form selectedType={selectedType} />

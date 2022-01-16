@@ -1,37 +1,37 @@
-import { AVAILABLE_MENU_LIST } from "../types";
+import { AVAILABLE_MENU_LIST } from '../types';
 
 export const mapMenuValueToMenuLabel = (type: AVAILABLE_MENU_LIST) => {
   switch (type) {
     case AVAILABLE_MENU_LIST.PICKUP:
-      return "픽업";
+      return '픽업';
     case AVAILABLE_MENU_LIST.MAIN:
-      return "메인";
+      return '메인';
     case AVAILABLE_MENU_LIST.UNTITLED_1:
-      return "가로 띠배너1";
+      return '가로 띠배너1';
     case AVAILABLE_MENU_LIST.UNTITLED_2:
-      return "가로 띠배너2";
+      return '가로 띠배너2';
     case AVAILABLE_MENU_LIST.UNTITLED_3:
-      return "가로 띠배너3";
+      return '가로 띠배너3';
     case AVAILABLE_MENU_LIST.VARIETIES:
-      return "품종";
+      return '품종';
     case AVAILABLE_MENU_LIST.PAIRING:
-      return "페어링";
+      return '페어링';
     case AVAILABLE_MENU_LIST.SCENT:
-      return "풍미";
+      return '풍미';
     case AVAILABLE_MENU_LIST.INDICATION:
-      return "한글 표시사항";
+      return '한글 표시사항';
     case AVAILABLE_MENU_LIST.DRINKING_GUIDE:
-      return "음용정보";
+      return '음용정보';
     case AVAILABLE_MENU_LIST.WARNING:
-      return "주류 경고문구";
+      return '주류 경고문구';
     case AVAILABLE_MENU_LIST.ADULT:
-      return "성인인증, 19세 경고문구";
+      return '성인인증, 19세 경고문구';
     case AVAILABLE_MENU_LIST.SMART_ORDER:
-      return "주류 스마트 오더";
+      return '주류 스마트 오더';
     case AVAILABLE_MENU_LIST.BRAND_SHOP_TOP:
-      return "브랜드샵(TOP)";
+      return '브랜드샵(TOP)';
     case AVAILABLE_MENU_LIST.BRAND_SHOP_BOTTOM:
-      return "브랜드샵(BOTTOM)";
+      return '브랜드샵(BOTTOM)';
   }
 };
 
@@ -44,14 +44,22 @@ export const insertResultToTemplate = (result: string) => `
       rel="stylesheet"
       type="text/css"
     />
-     <link
+
+    <link
       href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
       rel="stylesheet"
       type="text/css"
     />
+
+    <link
+      href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&subset=latin,latin-ext"
+      rel="stylesheet"
+      type="text/css"
+    />
+
     <style>
       * {
-        font-family: "Spoqa Han Sans Neo", "sans-serif";
+        font-family: Noto Sans;
       }
       img {
         border-style: initial !important;
