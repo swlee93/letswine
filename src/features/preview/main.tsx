@@ -1,6 +1,6 @@
-import { Fragment } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "src/features";
+import { Fragment } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from 'src/features';
 
 const MainFragment = () => {
   const { mainImageUrl, contents } = useSelector((state: RootState) => ({
@@ -11,90 +11,83 @@ const MainFragment = () => {
   return (
     <section
       style={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       }}
     >
-      <img
-        style={{ width: "100%", objectFit: "contain" }}
-        src={mainImageUrl}
-        alt=""
-      />
+      <img style={{ width: '100%', objectFit: 'contain' }} src={mainImageUrl} alt='' />
       <article
         style={{
-          width: "100%",
-          padding: "2rem 1rem",
-          maxWidth: "640px",
-          boxSizing: "border-box",
+          width: '100%',
+          padding: '2rem 1rem',
+          maxWidth: '640px',
+          boxSizing: 'border-box',
         }}
       >
-        <dl style={{ margin: "0px", padding: "0px" }}>
+        <dl style={{ margin: '0px', padding: '0px' }}>
           {contents.map((content, idx) => {
             return (
               <Fragment key={idx}>
                 <dt
                   style={{
-                    fontSize: "18px",
-                    lineHeight: "1.2rem",
-                    fontWeight: "bold",
-                    color: "rgb(40, 40, 40)",
+                    fontSize: '22px',
+                    lineHeight: '32px',
+                    fontWeight: 'normal',
+                    color: '#1D1D1D',
                   }}
                 >
                   {content.title}
                 </dt>
-                <div style={{ width: "1px", height: "10px" }} />
+                <div style={{ width: '1px', height: '10px' }} />
                 <dd
                   style={{
-                    color: "rgb(77, 77, 77)",
-                    fontSize: "13px",
-                    lineHeight: "1rem",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    whiteSpace: "pre-line",
-                    wordBreak: "break-all",
+                    fontSize: '15px',
+                    fontWeight: 'normal',
+                    lineHeight: '25px',
+                    color: '#4D4D4D',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    whiteSpace: 'pre-line',
+                    wordBreak: 'break-all',
                   }}
                 >
-                  {content.description?.includes("\\n") ? content.description.split("\\n").join("\n") : content.description}
+                  {content.description?.includes('\\n')
+                    ? content.description.split('\\n').join('\n')
+                    : content.description}
                   {content.image_url && (
-                    <img
-                      style={{ width: "100%", marginTop: "12px" }}
-                      src={content.image_url}
-                      alt=""
-                    />
+                    <img style={{ width: '100%', marginTop: '12px' }} src={content.image_url} alt='' />
                   )}
                   {content.embedded_url && (
                     <div
                       style={{
-                        position: "relative",
-                        padding: "30px 0 56.25% 0",
+                        position: 'relative',
+                        padding: '30px 0 56.25% 0',
                         height: 0,
-                        overflow: "hidden",
-                        marginTop: "12px"
+                        overflow: 'hidden',
+                        marginTop: '12px',
                       }}
                     >
                       <iframe
                         style={{
-                          position: "absolute",
+                          position: 'absolute',
                           top: 0,
                           left: 0,
-                          width: "100%",
-                          height: "100%",
+                          width: '100%',
+                          height: '100%',
                         }}
                         src={content.embedded_url}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        frameBorder='0'
+                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                         allowFullScreen
-                        title="youtube"
+                        title='youtube'
                       />
                     </div>
                   )}
                 </dd>
-                {contents.length - 1 !== idx && (
-                  <div style={{ width: "1px", height: "30px" }} />
-                )}
+                {contents.length - 1 !== idx && <div style={{ width: '1px', height: '30px' }} />}
               </Fragment>
             );
           })}
