@@ -32,6 +32,8 @@ export const mapMenuValueToMenuLabel = (type: AVAILABLE_MENU_LIST) => {
       return '브랜드샵(TOP)';
     case AVAILABLE_MENU_LIST.BRAND_SHOP_BOTTOM:
       return '브랜드샵(BOTTOM)';
+    case AVAILABLE_MENU_LIST.ALCOHOL_SAFETY_BOTTOM:
+      return '[주류]하단유의사항';
   }
 };
 
