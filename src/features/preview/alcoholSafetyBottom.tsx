@@ -6,8 +6,8 @@ const AlcoholSafetyBottomPreview = () => {
   return (
     <>
       <Indication />
-      <Warning />
       <SmartOrder />
+      <Warning />
     </>
   );
 };
