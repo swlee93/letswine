@@ -13,10 +13,11 @@ export const fontStylesBold: CSSProperties = {
   fontWeight: 'bold',
 };
 export const red: string = '#FF0000';
-
-export const UlStyles: CSSProperties = {
-  ...fontStyles,
+export const liStylesDisc: CSSProperties = {
   listStyle: 'disc',
+};
+export const ulStyles: CSSProperties = {
+  ...fontStyles,
   marginLeft: '24px',
 };
 

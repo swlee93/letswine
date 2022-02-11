@@ -3,7 +3,7 @@ import { sectionStyles, articleStyles, fontStyles, red } from './previewStyles';
 
 const WarningFragment: FC = () => {
   return (
-    <section style={{ ...sectionStyles }}>
+    <section style={{ ...sectionStyles, background: 'unset' }}>
       <article style={{ ...articleStyles }}>
         <small style={{ ...fontStyles }}>
           <span
@@ -23,6 +23,7 @@ const WarningFragment: FC = () => {
           주류의 통신판매에 관한 명령 위임 고시 관계법령에 따라 미성년자는 구매할 수 없으며, 19세 이상 성인인증을 하셔야
           구매 가능한 상품입니다.
         </small>
+        <br />
         <small style={{ ...fontStyles }}>
           경고: 지나친 음주는 뇌졸중, 기억력 손상이나 치매를 유발합니다. 임신 중 음주는 기형아 출생 위험을 높입니다.
           <br />

@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/features';
-import { fontStyles, articleStyles, UlStyles } from './previewStyles';
+import { fontStyles, articleStyles, ulStyles, liStylesDisc } from './previewStyles';
 
 const IndicationFragment = () => {
   const { title, subtitle, description, contents, imageUrl, warning } = useSelector((state: RootState) => ({
@@ -98,9 +98,9 @@ const IndicationFragment = () => {
         )}
         {warning && (
           <article style={{ ...articleStyles, padding: '8px 0' }}>
-            <ul style={{ ...UlStyles }}>
+            <ul style={{ ...ulStyles }}>
               {warning?.map((value) => {
-                return <li style={{ whiteSpace: 'pre-line' }}>{value}</li>;
+                return <li style={{ ...liStylesDisc, whiteSpace: 'pre-line' }}>{value}</li>;
               }) || []}
             </ul>
           </article>
